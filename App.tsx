@@ -37,7 +37,8 @@ import {
   Ticket,
   Lock,
   CalendarCheck,
-  XCircle
+  XCircle,
+  Library
 } from 'lucide-react';
 
 import { Section } from './components/Section';
@@ -1175,9 +1176,10 @@ export default function App() {
           {/* Comms cards */}
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-brand-bgAlt rounded-3xl border border-gray-100 p-7 shadow-sm">
-              <h3 className="text-2xl font-bold text-brand-brown mb-3">Internal Comms</h3>
+              <h3 className="text-2xl font-bold text-brand-brown mb-3">Internal Communications</h3>
               <ul className="space-y-2 text-base text-gray-700">
                 <li>• Week -2 toolkit + FAQ to store managers</li>
+                <li>• In store training roadshow</li>
                 <li>• Daily POS accuracy checks at till</li>
                 <li>• Weekly KPI email to leadership</li>
               </ul>
