@@ -6,13 +6,17 @@ interface SectionProps {
   className?: string;
   dark?: boolean;
   fullHeight?: boolean;
+  showWatermark?: boolean;
+  watermarkSrc?: string;
 }
 
 export const Section: React.FC<SectionProps> = ({ 
   children, 
   className = "", 
   dark = false,
-  fullHeight = true
+  fullHeight = true,
+  showWatermark = true,
+  watermarkSrc = "/logo.png"
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -35,6 +39,14 @@ export const Section: React.FC<SectionProps> = ({
       >
         {children}
       </motion.div>
+
+      {showWatermark && (
+        <img
+          src={watermarkSrc}
+          alt="Cascadia logo"
+          className="pointer-events-none select-none absolute bottom-6 right-6 w-24 md:w-32"
+        />
+      )}
     </section>
   );
 };

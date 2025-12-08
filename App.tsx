@@ -116,55 +116,58 @@ const PersonaCard = ({ name, type, icon: Icon, spend, habits, points, status, co
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col h-full relative overflow-hidden"
+    className="bg-white p-8 md:p-10 rounded-2xl border border-brand-brown/10 shadow-md flex flex-col h-full min-h-[420px] relative overflow-hidden"
   >
     <div className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-br ${color} opacity-10 rounded-bl-[3rem] -mr-4 -mt-4`}></div>
     
-    <div className="flex items-center gap-4 mb-4 relative z-10">
-      <div className={`p-3 rounded-full ${color} bg-opacity-10`}>
-        <Icon size={24} className={barColor.replace('bg-', 'text-')} /> 
+    <div className="flex items-center gap-4 mb-5 relative z-10">
+      <div className={`p-4 rounded-full ${color} bg-opacity-10`}>
+        <Icon size={28} className={barColor.replace('bg-', 'text-')} /> 
       </div>
       <div>
-        <h4 className="font-bold text-lg text-brand-brown">{name}</h4>
-        <span className="text-xs font-bold uppercase tracking-wider text-gray-400">{type}</span>
+        <h4 className="font-bold text-xl text-brand-brown">{name}</h4>
+        <span className="text-sm font-bold uppercase tracking-wider text-brand-red/70">{type}</span>
       </div>
     </div>
     
     <div className="flex-grow">
-      <p className="text-sm text-gray-600 mb-2 italic">"{habits}"</p>
-      <p className="text-xs text-gray-400 mb-4">{spend}</p>
+      <p className="text-base text-brand-brown mb-3 italic leading-relaxed">"{habits}"</p>
+      <p className="text-sm text-brand-brown/80 mb-5">{spend}</p>
     </div>
     
-    <div className="mt-4 pt-4 border-t border-gray-100 bg-gray-50 -mx-6 -mb-6 p-6">
-      <div className="flex justify-between text-sm mb-1">
-        <span className="text-gray-500 font-medium">Est. Pts/Yr</span>
-        <span className="font-bold text-brand-brown">{points}</span>
+    <div className="mt-4 pt-5 border-t border-gray-100 bg-gray-50 -mx-8 -mb-8 md:-mx-10 md:-mb-10 p-8 md:p-10">
+      <div className="flex justify-between text-base mb-2">
+        <span className="text-brand-brown font-semibold">Est. Pts/Yr</span>
+        <span className="font-black text-brand-brown text-lg">{points}</span>
       </div>
-      <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden mb-3">
+      <div className="w-full bg-gray-200 h-2.5 rounded-full overflow-hidden mb-4">
         <div 
           className={`h-full ${barColor}`} 
           style={{ width: progress }}
         ></div>
       </div>
       <div className="flex justify-between items-center">
-         <span className="text-xs text-gray-400 uppercase tracking-wide">Status</span>
-         <span className={`text-sm font-black ${barColor.replace('bg-', 'text-')}`}>{status}</span>
+         <span className="text-sm text-brand-brown/70 uppercase tracking-wide">Status</span>
+         <span className={`text-base font-black ${barColor.replace('bg-', 'text-')}`}>{status}</span>
       </div>
     </div>
   </motion.div>
 );
 
-const FinanceRow = ({ label, type, items, icon: Icon, color }: any) => (
+const FinanceRow = ({ label, type, items, icon: Icon, color, amount }: any) => (
   <div className="flex gap-4 items-start p-4 border-b border-gray-100 last:border-0">
     <div className={`p-2 rounded-lg ${color} bg-opacity-10 mt-1`}>
        <Icon size={18} className={color.replace('bg-', 'text-')} />
     </div>
     <div className="flex-1">
       <div className="flex justify-between items-center mb-1">
-        <h4 className="font-bold text-brand-brown">{label}</h4>
-        <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded ${color} bg-opacity-10 ${color.replace('bg-', 'text-')}`}>{type}</span>
+        <div className="flex items-center gap-3">
+          <h4 className="font-bold text-brand-brown">{label}</h4>
+          <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded ${color} bg-opacity-10 ${color.replace('bg-', 'text-')}`}>{type}</span>
+        </div>
+        {amount && <span className="text-base md:text-lg font-black text-brand-brown">{amount}</span>}
       </div>
-      <div className="flex flex-wrap gap-2 mt-2">
+      <div className="flex flex-wrap gap-2 mt-2 items-center">
          {items.map((item: string, i: number) => (
              <span key={i} className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded border border-gray-100">{item}</span>
          ))}
@@ -206,6 +209,7 @@ const ExperienceCard = ({ title, subtitle, icon: Icon, type, image }: any) => (
 );
 
 export default function App() {
+  const [showLoyalSlide, setShowLoyalSlide] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -222,13 +226,16 @@ export default function App() {
       />
 
       {/* 1. Intro Section */}
-      <Section className="bg-white">
+      <Section className="bg-white" showWatermark={false}>
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            <div className="absolute top-8 right-8">
+              <img src="/logo.png" alt="Cascadia logo" className="w-20 md:w-28 drop-shadow" />
+            </div>
             <h1 className="text-6xl md:text-8xl font-black text-brand-brown mb-6 tracking-tight leading-[0.9]">
               The Den:<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-orange-600">
@@ -263,7 +270,12 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div className="relative h-[400px] bg-white rounded-3xl p-8 shadow-xl rotate-2 hover:rotate-0 transition-transform duration-500">
+          <div 
+            className="relative h-[400px] bg-white rounded-3xl p-8 shadow-xl rotate-2 hover:rotate-0 transition-transform duration-500 cursor-pointer"
+            onClick={() => setShowLoyalSlide(v => !v)}
+            role="button"
+            aria-label="Toggle loyal scenario"
+          >
              <div className="absolute top-4 right-4 bg-gray-100 rounded-full p-2">
                 <Users className="text-gray-400" />
              </div>
@@ -275,12 +287,87 @@ export default function App() {
                         <div className="text-2xl font-bold text-brand-brown">2.3</div>
                         <div className="text-xs text-gray-500 uppercase tracking-wide">Visits/Mo</div>
                     </div>
-                    <div className="bg-gray-50 p-3 rounded-xl">
-                        <div className="text-2xl font-bold text-brand-brown">$37</div>
-                        <div className="text-xs text-gray-500 uppercase tracking-wide">Basket Size</div>
-                    </div>
-                </div>
+                  <div className="bg-gray-50 p-3 rounded-xl">
+                      <div className="text-2xl font-bold text-brand-brown">$37</div>
+                      <div className="text-xs text-gray-500 uppercase tracking-wide">Basket Size</div>
+                  </div>
+               </div>
              </div>
+             <motion.div 
+                initial={{ x: 80, opacity: 0 }} 
+                animate={showLoyalSlide ? { x: 0, opacity: 1 } : { x: 80, opacity: 0 }}
+                transition={{ delay: 0.1, type: "spring", stiffness: 140 }}
+                className="absolute -bottom-6 left-4 right-4 bg-brand-brown text-white rounded-2xl shadow-2xl p-4 flex items-center gap-4"
+             >
+                <div className="bg-white/20 rounded-xl p-3">
+                  <TrendingUp className="text-white" />
+                </div>
+                <div className="text-left">
+                  <div className="text-sm uppercase tracking-widest text-white/70 font-bold">When Loyal</div>
+                  <div className="text-lg font-black leading-tight">3.0 visits/mo • $45 basket • +30% CLV</div>
+                </div>
+             </motion.div>
+          </div>
+        </div>
+
+      </Section>
+
+      {/* NEW SECTION: CRM Overview */}
+      <Section className="bg-brand-cream">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="inline-flex items-center gap-3 bg-brand-brown/10 text-brand-brown px-5 py-2.5 rounded-full text-base md:text-lg font-black uppercase tracking-wider shadow-sm border border-brand-brown/20 mb-4">
+              <Rocket size={18} /> CRM 101
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-4">What is CRM?</h2>
+            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              Customer Relationship Management is the system that unifies shopper data, automates outreach, and measures impact. 
+              It connects POS, app, email, and SMS so every touchpoint is contextual—not generic blasts.
+            </p>
+            <div className="space-y-4">
+              <FeatureItem 
+                icon={Database}
+                title="Single Customer View"
+                desc="Purchases, preferences, and status live in one profile to drive precise targeting."
+              />
+              <FeatureItem 
+                icon={Bell}
+                title="Automated Journeys"
+                desc="Win-back, low-stock alerts, and tier nudges trigger based on behavior—no manual lists."
+              />
+              <FeatureItem 
+                icon={BarChart3}
+                title="Measured Sales Lift"
+                desc="Every campaign is tied to revenue, visit frequency, and basket size so we fund what works."
+              />
+            </div>
+          </div>
+          <div className="bg-white rounded-3xl shadow-2xl border border-brand-brown/10 p-8 space-y-6">
+            <h3 className="text-2xl font-bold text-brand-brown flex items-center gap-3">
+              <TrendingUp className="text-brand-red" /> How CRM Drives Sales
+            </h3>
+            <div className="space-y-4">
+              {[
+                { label: "Frequency", detail: "Win-back journeys bring lapsed guests back 7–14 days sooner." },
+                { label: "Basket", detail: "Affinity offers surface higher-margin items Sarah already likes." },
+                { label: "Mix Shift", detail: "Private label and local products get prioritized in recommendations." },
+                { label: "Breakage Control", detail: "Offers throttle based on liability and inventory positions." }
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center font-black">{i + 1}</div>
+                  <div>
+                    <div className="text-sm font-bold uppercase tracking-wider text-brand-brown">{item.label}</div>
+                    <p className="text-gray-600">{item.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="bg-brand-brown text-white rounded-2xl p-4 flex items-center gap-3">
+              <CheckCircle2 className="text-brand-green" />
+              <p className="text-sm leading-relaxed">
+                Net: CRM is the engine behind loyalty. It scales personalized selling while proving the revenue lift.
+              </p>
+            </div>
           </div>
         </div>
       </Section>
@@ -315,6 +402,9 @@ export default function App() {
       <Section className="bg-brand-bgAlt overflow-visible">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 space-y-8">
+            <div className="inline-flex items-center gap-3 bg-brand-brown/10 text-brand-brown px-5 py-2.5 rounded-full text-base md:text-lg font-black uppercase tracking-wider shadow-sm border border-brand-brown/20">
+              <Rocket size={18} /> Phase 1: Launch
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif">
               More than a card.<br/>A digital companion.
             </h2>
@@ -373,6 +463,11 @@ export default function App() {
       <Section className="bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
+              <div className="flex justify-start mb-4">
+                <div className="inline-flex items-center gap-3 bg-brand-brown/10 text-brand-brown px-5 py-2.5 rounded-full text-base md:text-lg font-black uppercase tracking-wider shadow-sm border border-brand-brown/20">
+                  <Rocket size={18} /> Phase 1: Launch
+                </div>
+              </div>
               <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-4">The Mechanics</h2>
               <p className="text-xl text-gray-500">Simple to understand. Rewarding to engage.</p>
           </div>
@@ -474,20 +569,47 @@ export default function App() {
               </div>
           </div>
         </div>
+
+        {/* Multipliers Section */}
+        <div className="mt-24">
+            <h3 className="text-2xl font-bold text-brand-brown mb-8 text-left">Smart Multipliers</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+                {[
+                    { title: "App Usage", val: "12 pts/$1", desc: "Drives digital adoption & data capture." },
+                    { title: "Private Label", val: "15 pts/$1", desc: "Higher margins, supports local." },
+                    { title: "New Releases", val: "3x Points", desc: "Moves inventory fast in first 30 days." }
+                ].map((item, i) => (
+                    <motion.div 
+                        key={i}
+                        whileHover={{ y: -5 }}
+                        className="bg-brand-bgAlt p-6 rounded-lg overflow-hidden border border-brand-brown/10 shadow-sm text-center"
+                    >
+                        <h4 className="text-gray-500 font-bold uppercase text-xs tracking-wider mb-2">{item.title}</h4>
+                        <div className="text-3xl font-black text-brand-red mb-2">{item.val}</div>
+                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
       </Section>
 
       {/* 6. Tiers & Multipliers */}
       <Section className="bg-brand-bgAlt">
         <div className="text-center mb-16">
+          <div className="flex justify-start mb-4">
+            <div className="inline-flex items-center gap-3 bg-brand-brown/10 text-brand-brown px-5 py-2.5 rounded-full text-base md:text-lg font-black uppercase tracking-wider shadow-sm border border-brand-brown/20">
+              <Rocket size={18} /> Phase 1: Launch
+            </div>
+          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif">Three Tiers of Loyalty</h2>
           <p className="text-xl text-gray-500 mt-4">Designed to drive aspiration and consistency.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-24">
             {[
-                { name: "Cub", pts: "10", sub: "Entry Level", color: "bg-gray-100", border: "border-gray-200", icon: "🐻" },
-                { name: "Brown Bear", pts: "12.5", sub: "Mid Tier", color: "bg-orange-50", border: "border-orange-200", icon: "🐻", highlight: true },
-                { name: "Grizzly", pts: "15", sub: "VIP Status", color: "bg-brand-brown text-white", border: "border-brand-brown", icon: "👑" }
+                { name: "Cub", pts: "10", sub: "Entry Level", range: "0–9,999 pts (annual reset)", spend: "Level up at ~$1,000 spend", color: "bg-gray-100", border: "border-gray-200", icon: "🐻" },
+                { name: "Brown Bear", pts: "12.5", sub: "Mid Tier", range: "10,000–29,999 pts (annual reset)", spend: "Earned at ~$1,000 spend", color: "bg-orange-50", border: "border-orange-200", icon: "🐻", highlight: true },
+                { name: "Grizzly", pts: "15", sub: "VIP Status", range: "30,000+ pts (annual reset)", spend: "Earned at ~$3,000 spend", color: "bg-brand-brown text-white", border: "border-brand-brown", icon: "👑" }
             ].map((tier, idx) => (
                 <motion.div 
                     key={tier.name}
@@ -499,10 +621,12 @@ export default function App() {
                     <div className="text-4xl mb-4">{tier.icon}</div>
                     <h3 className={`text-2xl font-bold mb-2 ${tier.color.includes('text-white') ? 'text-white' : 'text-brand-brown'}`}>{tier.name}</h3>
                     <p className={`text-sm uppercase tracking-wider font-bold mb-6 opacity-70`}>{tier.sub}</p>
-                    <div className="mb-6">
+                    <div className="mb-4">
                         <span className="text-4xl font-black">{tier.pts}</span>
-                        <span className="text-lg opacity-80"> pts / $1</span>
+                        <span className="text-lg opacity-80"> pts / $1 spent</span>
                     </div>
+                    <p className={`text-sm font-bold uppercase tracking-wider mb-1 ${tier.color.includes('text-white') ? 'text-white/80' : 'text-brand-brown/70'}`}>{tier.range}</p>
+                    <p className={`text-sm font-semibold mb-4 ${tier.color.includes('text-white') ? 'text-white/80' : 'text-gray-700'}`}>{tier.spend}</p>
                     <ul className="space-y-3 text-sm">
                         <li className="flex gap-2 items-center"><CheckCircle2 size={16} /> Birthday Rewards</li>
                         <li className="flex gap-2 items-center"><CheckCircle2 size={16} /> Member Sales</li>
@@ -518,24 +642,11 @@ export default function App() {
           <div className="text-center mb-10">
             <h3 className="text-3xl font-bold text-brand-brown font-serif mb-4">Who sits where?</h3>
             <p className="text-gray-500">
-               Thresholds: <span className="font-bold text-brand-brown bg-brand-brown/10 px-2 py-0.5 rounded mx-1">10,000 pts</span> for Brown Bear, 
-               <span className="font-bold text-brand-brown bg-brand-brown/10 px-2 py-0.5 rounded mx-1">25,000 pts</span> for Grizzly.
+               Annual reset. Cub: 0–9,999 pts. Brown Bear: 10,000–29,999 pts (~$1,000 spend). Grizzly: 30,000+ pts (~$3,000 spend).
             </p>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-6">
-             <PersonaCard 
-               name="Joe"
-               type="The Minimalist"
-               icon={Beer}
-               color="bg-gray-400"
-               barColor="bg-gray-400"
-               habits="Grabs a 6-pack once a month."
-               spend="$360/year"
-               points="3,600"
-               status="Cub Forever"
-               progress="14%"
-             />
+          <div className="grid md:grid-cols-3 gap-10 lg:gap-12">
              <PersonaCard 
                name="Sarah"
                type="The Growth Target"
@@ -549,7 +660,7 @@ export default function App() {
                progress="42%"
              />
              <PersonaCard 
-               name="Ted"
+               name="Priya"
                type="The Enthusiast"
                icon={Gift}
                color="bg-orange-500"
@@ -561,7 +672,7 @@ export default function App() {
                progress="96%"
              />
              <PersonaCard 
-               name="Victoria"
+               name="Alejandro"
                type="The Collector"
                icon={Crown}
                color="bg-brand-brown"
@@ -575,72 +686,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* Multipliers Section */}
-        <div className="mt-24">
-            <h3 className="text-2xl font-bold text-brand-brown mb-8 text-center">Smart Multipliers</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-                {[
-                    { title: "App Usage", val: "12 pts/$1", desc: "Drives digital adoption & data capture." },
-                    { title: "Private Label", val: "15 pts/$1", desc: "Higher margins, supports local." },
-                    { title: "New Releases", val: "3x Points", desc: "Moves inventory fast in first 30 days." }
-                ].map((item, i) => (
-                    <motion.div 
-                        key={i}
-                        whileHover={{ y: -5 }}
-                        className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center"
-                    >
-                        <h4 className="text-gray-500 font-bold uppercase text-xs tracking-wider mb-2">{item.title}</h4>
-                        <div className="text-3xl font-black text-brand-red mb-2">{item.val}</div>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
-                    </motion.div>
-                ))}
-            </div>
-        </div>
-      </Section>
-
-      {/* NEW SECTION: Experience Vault (Experiential Rewards) */}
-      <Section dark className="bg-brand-brown">
-          <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                  <span className="bg-white/10 text-brand-cream px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block">
-                      Beyond the Discount
-                  </span>
-                  <h2 className="text-4xl md:text-5xl font-bold text-white font-serif mb-6">The Experience Vault</h2>
-                  <p className="text-xl text-white/60 max-w-2xl mx-auto">
-                      Points can buy money off, but status buys access. 
-                      This is the "secret sauce" that drives emotional loyalty for our top-tier members.
-                  </p>
-              </div>
-
-              <div className="grid lg:grid-cols-3 gap-8">
-                  <ExperienceCard 
-                      type="The Access"
-                      title="Meet the Maker"
-                      subtitle="Private, after-hours tasting events with visiting winemakers and master distillers. Intimate, educational, and strictly invite-only."
-                      icon={Ticket}
-                      image="from-black to-red-900"
-                  />
-                  <ExperienceCard 
-                      type="The Adventure"
-                      title="Harvest Tours"
-                      subtitle="Annual weekend retreats to partner vineyards in the Okanagan. Members can redeem points for travel packages or exclusive entry."
-                      icon={Plane}
-                      image="from-black to-green-900"
-                  />
-                  <ExperienceCard 
-                      type="The Acquisition"
-                      title="Vault Access"
-                      subtitle="First right of refusal on allocated spirits (Pappy, Macallan 25). No line-ups, no bots. Just Grizzly status privileges."
-                      icon={Lock}
-                      image="from-black to-yellow-900"
-                  />
-              </div>
-
-              <div className="mt-12 text-center text-white/40 text-sm font-medium flex justify-center items-center gap-2">
-                  <CalendarCheck size={16} />
-                  <span>Events calendar rotates quarterly</span>
-              </div>
-          </div>
       </Section>
 
       {/* 7. NEW CRM Section */}
@@ -650,6 +695,9 @@ export default function App() {
              
              {/* Left: Strategy */}
              <div>
+               <div className="inline-flex items-center gap-3 bg-brand-brown/10 text-brand-brown px-5 py-2.5 rounded-full text-base md:text-lg font-black uppercase tracking-wider shadow-sm border border-brand-brown/20 mb-4">
+                 <Rocket size={18} /> Phase 1: Launch
+               </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-6">The Engagement Engine</h2>
                 <p className="text-xl text-gray-500 mb-12">
                    How we nudge Sarah from passive collection to active engagement using <span className="text-brand-red font-bold">lifecycle marketing</span>.
@@ -735,6 +783,63 @@ export default function App() {
         </div>
       </Section>
 
+      {/* 7b. Engagement Performance */}
+      <Section className="bg-brand-bgAlt">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 bg-brand-brown/10 text-brand-brown px-5 py-2.5 rounded-full text-base font-black uppercase tracking-wider shadow-sm border border-brand-brown/20">
+              <TrendingUp size={18} /> What's Working Now
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mt-4">Engagement Performance</h2>
+            <p className="text-lg text-gray-600 mt-3">Opens, clicks, conversions over the last 90 days.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <motion.div whileHover={{ y: -5 }} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 rounded-xl bg-brand-red/10 text-brand-red"><Bell size={20} /></div>
+                <span className="text-sm font-bold uppercase tracking-wider text-gray-500">SMS</span>
+              </div>
+              <div className="space-y-2 mb-4">
+                <p className="text-3xl font-black text-brand-brown">71% open</p>
+                <p className="text-xl font-black text-brand-brown">19% click</p>
+                <p className="text-lg font-semibold text-brand-green">7.8% convert</p>
+              </div>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">90-day rolling avg</p>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -5 }} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 rounded-xl bg-brand-brown/10 text-brand-brown"><Smartphone size={20} /></div>
+                <span className="text-sm font-bold uppercase tracking-wider text-gray-500">In-App Push</span>
+              </div>
+              <div className="space-y-2 mb-4">
+                <p className="text-3xl font-black text-brand-brown">84% open</p>
+                <p className="text-xl font-black text-brand-brown">22% click</p>
+                <p className="text-lg font-semibold text-brand-green">9.1% convert</p>
+              </div>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">90-day rolling avg</p>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -5 }} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 rounded-xl bg-brand-green/10 text-brand-green"><ArrowUpRight size={20} /></div>
+                <span className="text-sm font-bold uppercase tracking-wider text-gray-500">Email (Benchmark)</span>
+              </div>
+              <div className="space-y-2 mb-4">
+                <p className="text-3xl font-black text-brand-brown">42% open</p>
+                <p className="text-xl font-black text-brand-brown">8% click</p>
+                <p className="text-lg font-semibold text-brand-green">2.4% convert</p>
+              </div>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">90-day rolling avg</p>
+            </motion.div>
+          </div>
+          <p className="text-xs text-gray-500 text-center mt-6">
+            Illustrative placeholders — swap in your last 90-day platform metrics (Alpine IQ/email/push) when available.
+          </p>
+        </div>
+      </Section>
+
       {/* 8. The Platform (Alpine IQ) */}
       <Section dark className="bg-brand-dark">
         <div className="max-w-6xl mx-auto">
@@ -817,13 +922,15 @@ export default function App() {
                             label="Tech Stack" 
                             type="Fixed Cost" 
                             items={["Implementation Fee", "Annual SaaS License"]} 
+                            amount="$3,000/mo"
                             icon={Database} 
                             color="bg-brand-brown" 
                         />
                         <FinanceRow 
                             label="Points Liability" 
                             type="Variable (COGS)" 
-                            items={["1-2% of Revenue", "Breakage Estimates"]} 
+                            items={["0.3% of Revenue", "Breakage Estimates"]} 
+                            amount="0.3% of Revenue"
                             icon={PieChart} 
                             color="bg-brand-red" 
                         />
@@ -831,6 +938,7 @@ export default function App() {
                             label="Marketing" 
                             type="Launch Only" 
                             items={["In-store Signage", "Digital Ads"]} 
+                            amount="$30,000"
                             icon={Smartphone} 
                             color="bg-orange-500" 
                         />
@@ -855,25 +963,73 @@ export default function App() {
                             label="Revenue Lift" 
                             type="Projected" 
                             items={["Increased Frequency", "Basket Size Growth"]} 
+                            amount="3.0% • $1.8m"
                             icon={ArrowUpRight} 
                             color="bg-brand-green" 
                         />
                         <FinanceRow 
-                            label="Vendor Funding" 
+                            label="LTV Increase" 
                             type="New Stream" 
                             items={["Digital Trade Mktg", "Sponsored Boosts"]} 
                             icon={DollarSign} 
                             color="bg-blue-500" 
                         />
                          <FinanceRow 
-                            label="Efficiency" 
+                            label="Reduction in Discount" 
                             type="Savings" 
                             items={["Reduced Mass Media", "Inventory Optimization"]} 
+                            amount="1.2%"
                             icon={BarChart3} 
                             color="bg-purple-500" 
                         />
                      </div>
                  </motion.div>
+             </div>
+
+             {/* Performance Table */}
+             <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-8 mb-8 overflow-hidden">
+                <div className="flex items-center justify-between mb-4">
+                    <div>
+                        <h4 className="text-2xl font-bold text-brand-brown">Additional Sales Sensitivity</h4>
+                    </div>
+                </div>
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left text-base text-brand-brown">
+                        <thead>
+                            <tr className="border-b border-gray-100 text-xs uppercase tracking-wider text-gray-500">
+                                <th className="py-2 pr-4">Participation</th>
+                                <th className="py-2 pr-4 text-center" colSpan={4}>Additional Sales from Frequency Increase</th>
+                            </tr>
+                            <tr className="border-b border-gray-100 text-xs uppercase tracking-wider text-gray-500">
+                                <th className="py-2 pr-4"></th>
+                                <th className="py-2 pr-4 text-center">5%</th>
+                                <th className="py-2 pr-4 text-center bg-brand-brown/20 rounded-md font-bold text-brand-brown">10%</th>
+                                <th className="py-2 pr-4 text-center">15%</th>
+                                <th className="py-2 pr-4 text-center">20%</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100">
+                            {[
+                              { participation: "10%", values: ["$300k", "$600k", "$900k", "$1.2m"] },
+                              { participation: "20%", values: ["$600k", "$1.2m", "$1.8m", "$2.4m"] },
+                              { participation: "30%", values: ["$900k", "$1.8m", "$2.7m", "$3.5m"] },
+                              { participation: "40%", values: ["$1.2m", "$2.4m", "$3.6m", "$4.8m"] },
+                            ].map((row, idx) => (
+                              <tr key={idx} className={row.participation === "30%" ? "bg-brand-red/10" : ""}>
+                                  <td className="py-2.5 pr-4 font-semibold">{row.participation}</td>
+                                  {row.values.map((val, i) => (
+                                    <td 
+                                      key={i} 
+                                      className={`py-2.5 pr-4 text-center font-semibold text-brand-brown ${i === 1 ? 'bg-brand-brown/20 rounded-md font-bold' : ''}`}
+                                    >
+                                      {val}
+                                    </td>
+                                  ))}
+                              </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
              </div>
 
              {/* Summary Box */}
@@ -885,17 +1041,17 @@ export default function App() {
                  {/* Background Graphic */}
                  <div className="absolute right-0 top-0 h-full w-1/3 bg-white/5 skew-x-[-20deg] transform translate-x-12"></div>
 
-                 <div className="relative z-10">
-                     <h4 className="text-xl font-bold mb-2 text-white/90">Projected Outcome</h4>
-                     <p className="text-white/60 max-w-lg text-sm leading-relaxed">
-                        Even with conservative estimates on enrollment (40%), the lift in frequency combined with vendor-funded campaigns projects a positive ROI within year one.
-                     </p>
-                 </div>
-                 <div className="relative z-10 text-center md:text-right">
-                     <div className="text-4xl md:text-5xl font-black text-brand-green mb-1">Year 1</div>
-                     <div className="text-sm font-bold uppercase tracking-widest text-white/50">Break Even Target</div>
-                 </div>
-             </motion.div>
+                <div className="relative z-10">
+                    <h4 className="text-xl font-bold mb-2 text-white/90">Projected Outcome</h4>
+                    <p className="text-white/60 max-w-lg text-sm leading-relaxed">
+                        Even with conservative estimates on enrollment (30%), the lift in frequency projects a positive ROI within year one.
+                    </p>
+                </div>
+                <div className="relative z-10 text-center md:text-right">
+                    <div className="text-4xl md:text-5xl font-black text-brand-green mb-1">Year 1</div>
+                    <div className="text-sm font-bold uppercase tracking-widest text-white/50">Break Even Target: 1.2%</div>
+                </div>
+            </motion.div>
          </div>
       </Section>
 
@@ -987,8 +1143,56 @@ export default function App() {
         </div>
       </Section>
 
-      <footer className="bg-brand-brown text-white/40 py-12 text-center">
-        <p className="font-serif">The Den Loyalty Program • Cascadia • 2025</p>
+      {/* NEW SECTION: Experience Vault (Experiential Rewards) */}
+      <Section dark className="bg-brand-brown">
+          <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                  <span className="bg-white/10 text-brand-cream px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block">
+                      Beyond the Discount
+                  </span>
+                  <h2 className="text-4xl md:text-5xl font-bold text-white font-serif mb-6">The Experience Vault</h2>
+                  <p className="text-xl text-white/60 max-w-2xl mx-auto">
+                      Points can buy money off, but status buys access. 
+                      This is the "secret sauce" that drives emotional loyalty for our top-tier members.
+                  </p>
+              </div>
+
+              <div className="grid lg:grid-cols-3 gap-8">
+                  <ExperienceCard 
+                      type="The Access"
+                      title="Meet the Maker"
+                      subtitle="Private, after-hours tasting events with visiting winemakers and master distillers. Intimate, educational, and strictly invite-only."
+                      icon={Ticket}
+                      image="from-black to-red-900"
+                  />
+                  <ExperienceCard 
+                      type="The Adventure"
+                      title="Harvest Tours"
+                      subtitle="Annual weekend retreats to partner vineyards in the Okanagan. Members can redeem points for travel packages or exclusive entry."
+                      icon={Plane}
+                      image="from-black to-green-900"
+                  />
+                  <ExperienceCard 
+                      type="The Acquisition"
+                      title="Vault Access"
+                      subtitle="First right of refusal on allocated spirits (Pappy, Macallan 25). No line-ups, no bots. Just Grizzly status privileges."
+                      icon={Lock}
+                      image="from-black to-yellow-900"
+                  />
+              </div>
+
+              <div className="mt-12 text-center text-white/40 text-sm font-medium flex justify-center items-center gap-2">
+                  <CalendarCheck size={16} />
+                  <span>Events calendar rotates quarterly</span>
+              </div>
+          </div>
+      </Section>
+
+      <footer className="bg-brand-brown text-white/60 py-12 text-center relative overflow-hidden">
+        <div className="absolute inset-0 opacity-15 flex items-center justify-center">
+          <img src="/logo-footer.png" alt="Cascadia footer logo" className="w-32 md:w-40" />
+        </div>
+        <p className="font-serif relative z-10">The Den Loyalty Program • Cascadia • 2025</p>
       </footer>
     </div>
   );
