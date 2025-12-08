@@ -36,7 +36,8 @@ import {
   Plane,
   Ticket,
   Lock,
-  CalendarCheck
+  CalendarCheck,
+  XCircle
 } from 'lucide-react';
 
 import { Section } from './components/Section';
@@ -310,66 +311,6 @@ export default function App() {
           </div>
         </div>
 
-      </Section>
-
-      {/* NEW SECTION: CRM Overview */}
-      <Section className="bg-brand-cream">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="inline-flex items-center gap-3 bg-brand-brown/10 text-brand-brown px-5 py-2.5 rounded-full text-base md:text-lg font-black uppercase tracking-wider shadow-sm border border-brand-brown/20 mb-4">
-              <Rocket size={18} /> CRM 101
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-4">What is CRM?</h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              Customer Relationship Management is the system that unifies shopper data, automates outreach, and measures impact. 
-              It connects POS, app, email, and SMS so every touchpoint is contextual—not generic blasts.
-            </p>
-            <div className="space-y-4">
-              <FeatureItem 
-                icon={Database}
-                title="Single Customer View"
-                desc="Purchases, preferences, and status live in one profile to drive precise targeting."
-              />
-              <FeatureItem 
-                icon={Bell}
-                title="Automated Journeys"
-                desc="Win-back, low-stock alerts, and tier nudges trigger based on behavior—no manual lists."
-              />
-              <FeatureItem 
-                icon={BarChart3}
-                title="Measured Sales Lift"
-                desc="Every campaign is tied to revenue, visit frequency, and basket size so we fund what works."
-              />
-            </div>
-          </div>
-          <div className="bg-white rounded-3xl shadow-2xl border border-brand-brown/10 p-8 space-y-6">
-            <h3 className="text-2xl font-bold text-brand-brown flex items-center gap-3">
-              <TrendingUp className="text-brand-red" /> How CRM Drives Sales
-            </h3>
-            <div className="space-y-4">
-              {[
-                { label: "Frequency", detail: "Win-back journeys bring lapsed guests back 7–14 days sooner." },
-                { label: "Basket", detail: "Affinity offers surface higher-margin items Sarah already likes." },
-                { label: "Mix Shift", detail: "Private label and local products get prioritized in recommendations." },
-                { label: "Breakage Control", detail: "Offers throttle based on liability and inventory positions." }
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center font-black">{i + 1}</div>
-                  <div>
-                    <div className="text-sm font-bold uppercase tracking-wider text-brand-brown">{item.label}</div>
-                    <p className="text-gray-600">{item.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="bg-brand-brown text-white rounded-2xl p-4 flex items-center gap-3">
-              <CheckCircle2 className="text-brand-green" />
-              <p className="text-sm leading-relaxed">
-                Net: CRM is the engine behind loyalty. It scales personalized selling while proving the revenue lift.
-              </p>
-            </div>
-          </div>
-        </div>
       </Section>
 
       {/* 3. The Opportunity */}
@@ -688,6 +629,59 @@ export default function App() {
 
       </Section>
 
+      {/* Competitor Comparison */}
+      <Section className="bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mt-4">How Others Play</h2>
+            <p className="text-lg text-gray-600 mt-2">Competitor loyalty landscape (Island): earn, value, redemption.</p>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-brand-brown/10 shadow-lg p-6">
+            <div className="overflow-x-auto">
+              <table className="w-full text-base md:text-lg text-brand-brown min-w-[1000px]">
+                <thead>
+                  <tr className="text-sm uppercase tracking-wider text-gray-500">
+                    <th className="text-center py-3 px-3 bg-brand-bgAlt text-brand-brown font-bold shadow-sm border border-gray-200">Benchmark</th>
+                    <th className="text-center py-3 px-3 bg-brand-brown text-white shadow-lg border-2 border-brand-red/30">Cascadia</th>
+                    <th className="text-center py-3 px-3 bg-brand-bgAlt text-brand-brown border border-gray-100">Liquor Plus</th>
+                    <th className="text-center py-3 px-3 bg-brand-bgAlt text-brand-brown border border-gray-100">Voyage</th>
+                    <th className="text-center py-3 px-3 bg-brand-bgAlt text-brand-brown border border-gray-100">Liquor Co. 1977</th>
+                    <th className="text-center py-3 px-3 bg-brand-bgAlt text-brand-brown border border-gray-100">Mid-Island Co-op</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {[
+                    { feature: "Base Earn", benchmark: ["≥2% earn", "Transparent value"], cols: [true, false, false, false, false], detail: ["~1–1.5% base (10–15 pts)", "~1% gift card", "Not posted", "Annual dividend", "Annual dividend"] },
+                    { feature: "Redemption", benchmark: ["Instant $ off", "No minimum"], cols: [true, false, false, false, false], detail: ["No minimum", "500 pts gift card", "At participating stores", "Annual payout", "Annual payout"] },
+                    { feature: "Native App", benchmark: ["Native app", "Scan / digital card"], cols: [true, true, true, false, false], detail: ["iOS/Android, scan-to-pay", "App barcode", "App card", "Co-op number", "Co-op number"] },
+                    { feature: "Reward Tiers", benchmark: ["Tiers + experiential", "Multipliers"], cols: [true, false, false, false, false], detail: ["Tier bonuses + Vault", "Giveaways/contests"] },
+                    { feature: "Member Perks", benchmark: ["Personalized offers", "Clear perks"], cols: [true, false, false, false, false], detail: ["Experiential rewards", "Monthly contests", "Promos"] },
+                  ].map((row, i) => (
+                    <tr key={i} className="align-top">
+                      <td className="py-4 px-3 text-center bg-brand-bgAlt">
+                        <div className="inline-flex flex-col items-start gap-1 text-left">
+                          <div className="text-lg md:text-xl font-black text-brand-brown">{row.feature}</div>
+                          <div className="text-sm font-semibold text-brand-brown">{row.benchmark[0]}</div>
+                        </div>
+                      </td>
+                      {row.cols.map((hasIt, j) => (
+                        <td key={j} className={`py-4 px-3 text-center ${j === 0 ? 'bg-brand-red/5 border border-brand-red/20 shadow-sm' : 'bg-brand-bgAlt/70'}`}>
+                          <div className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-bold shadow-sm ${hasIt ? 'bg-brand-green/25 text-brand-green border border-brand-green/50' : 'bg-brand-red/20 text-brand-red border border-brand-red/40'}`}>
+                            {hasIt ? 'Lead' : 'Gap'}
+                          </div>
+                          <div className="text-sm text-gray-700 mt-2">{row.detail[j]}</div>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* 7. NEW CRM Section */}
       <Section className="bg-white">
         <div className="max-w-6xl mx-auto">
@@ -777,8 +771,68 @@ export default function App() {
                  <div className="mt-8 text-center">
                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Real-time Push & SMS</p>
                  </div>
-             </div>
+            </div>
 
+         </div>
+        </div>
+      </Section>
+
+      {/* NEW SECTION: CRM Overview */}
+      <Section className="bg-brand-cream">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="inline-flex items-center gap-3 bg-brand-brown/10 text-brand-brown px-5 py-2.5 rounded-full text-base md:text-lg font-black uppercase tracking-wider shadow-sm border border-brand-brown/20 mb-4">
+              <Rocket size={18} /> CRM 101
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-4">What is CRM?</h2>
+            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              Customer Relationship Management is the system that unifies shopper data, automates outreach, and measures impact. 
+              It connects POS, app, email, and SMS so every touchpoint is contextual—not generic blasts.
+            </p>
+            <div className="space-y-4">
+              <FeatureItem 
+                icon={Database}
+                title="Single Customer View"
+                desc="Purchases, preferences, and status live in one profile to drive precise targeting."
+              />
+              <FeatureItem 
+                icon={Bell}
+                title="Automated Journeys"
+                desc="Win-back, low-stock alerts, and tier nudges trigger based on behavior—no manual lists."
+              />
+              <FeatureItem 
+                icon={BarChart3}
+                title="Measured Sales Lift"
+                desc="Every campaign is tied to revenue, visit frequency, and basket size so we fund what works."
+              />
+            </div>
+          </div>
+          <div className="bg-white rounded-3xl shadow-2xl border border-brand-brown/10 p-8 space-y-6">
+            <h3 className="text-2xl font-bold text-brand-brown flex items-center gap-3">
+              <TrendingUp className="text-brand-red" /> How CRM Drives Sales
+            </h3>
+            <div className="space-y-4">
+              {[
+                { label: "Frequency", detail: "Win-back journeys bring lapsed guests back 7–14 days sooner." },
+                { label: "Basket", detail: "Affinity offers surface higher-margin items Sarah already likes." },
+                { label: "Mix Shift", detail: "Private label and local products get prioritized in recommendations." },
+                { label: "Breakage Control", detail: "Offers throttle based on liability and inventory positions." }
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center font-black">{i + 1}</div>
+                  <div>
+                    <div className="text-sm font-bold uppercase tracking-wider text-brand-brown">{item.label}</div>
+                    <p className="text-gray-600">{item.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="bg-brand-brown text-white rounded-2xl p-4 flex items-center gap-3">
+              <CheckCircle2 className="text-brand-green" />
+              <p className="text-sm leading-relaxed">
+                Net: CRM is the engine behind loyalty. It scales personalized selling while proving the revenue lift.
+              </p>
+            </div>
           </div>
         </div>
       </Section>
@@ -843,54 +897,81 @@ export default function App() {
       {/* 8. The Platform (Alpine IQ) */}
       <Section dark className="bg-brand-dark">
         <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-serif">The Engine: Alpine IQ</h2>
-                    <p className="text-xl text-gray-400 max-w-2xl">The Den is built on proven technology, not hope.</p>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+                <div className="space-y-3">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white font-serif">Why Alpine IQ?</h2>
+                    <p className="text-xl text-gray-300 max-w-3xl">Alpine IQ is the glue that ties Cascadia's POS  app, and marketing together to increase repeat visits and build baskets.</p>
                 </div>
-                <div className="flex gap-4">
-                    <div className="bg-white/10 backdrop-blur px-6 py-3 rounded-xl border border-white/10">
-                        <span className="block text-2xl font-bold text-brand-green">1,000+</span>
-                        <span className="text-xs text-gray-400">Retailers</span>
+                <div className="flex flex-wrap gap-3 md:gap-4">
+                    <div className="bg-white/10 backdrop-blur px-5 py-3 rounded-xl border border-white/10 text-center">
+                        <span className="block text-2xl font-black text-brand-green">4,000+</span>
+                        <span className="text-xs text-gray-300">AIQ storefronts</span>
                     </div>
-                    <div className="bg-white/10 backdrop-blur px-6 py-3 rounded-xl border border-white/10">
-                        <span className="block text-2xl font-bold text-brand-green">28%</span>
-                        <span className="text-xs text-gray-400">Freq. Lift</span>
+                    <div className="bg-white/10 backdrop-blur px-5 py-3 rounded-xl border border-white/10 text-center">
+                        <span className="block text-2xl font-black text-brand-green">15% ↑</span>
+                        <span className="text-xs text-gray-300">Avg. transaction (clients)</span>
                     </div>
                 </div>
             </div>
+            <p className="text-[10px] text-gray-400 mb-8">Benchmarks reported by AIQ across partner programs.</p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <PlatformCard 
-                    icon={Database} 
-                    title="Deep Integration" 
-                    desc="Direct POS connection with Stellar. Real-time points accrual and instant redemption at checkout." 
-                />
-                <PlatformCard 
-                    icon={Smartphone} 
-                    title="Native Mobile" 
-                    desc="Full iOS and Android apps. Not a web wrapper. Real native experiences with offline support." 
-                />
-                <PlatformCard 
-                    icon={BarChart3} 
-                    title="Analytics Suite" 
-                    desc="Member-level purchase history, cohort analysis, and predictive modeling." 
-                />
-                <PlatformCard 
-                    icon={Zap} 
-                    title="Marketing Auto" 
-                    desc="Triggered campaigns and segmented messaging to engage members without manual work." 
-                />
-                <PlatformCard 
-                    icon={ShieldCheck} 
-                    title="Enterprise Grade" 
-                    desc="PIPA compliant, SOC 2 certified, encrypted data. Role-based access control." 
-                />
-                <PlatformCard 
-                    icon={Wine} 
-                    title="Industry Specific" 
-                    desc="Built specifically for regulated industries like cannabis and liquor." 
-                />
+              {[
+                {
+                  icon: Database,
+                  title: "Deep Integration",
+                  line1: "Real-time POS sync across stores",
+                  line2: "Instant earn/redeem; no till lag"
+                },
+                {
+                  icon: Smartphone,
+                  title: "Native Mobile",
+                  line1: "iOS/Android app, barcode + scan-to-pay",
+                  line2: "Drives digital IDs and baskets"
+                },
+                {
+                  icon: BarChart3,
+                  title: "Analytics Suite",
+                  line1: "SKU-level cohorts and predictive alerts",
+                  line2: "Target high-margin and local picks"
+                },
+                {
+                  icon: Zap,
+                  title: "Marketing Auto",
+                  line1: "Journeys for win-back, tiers, launches",
+                  line2: "Less blasting; more repeat trips"
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Enterprise Grade",
+                  line1: "PIPA/PCI aware, roles, audit trails",
+                  line2: "Protects guest data and ops risk"
+                },
+                {
+                  icon: Wine,
+                  title: "Industry Specific",
+                  line1: "Built for regulated alcohol/cannabis",
+                  line2: "Ready to extend to cannabis + VBG"
+                }
+              ].map((card, idx) => (
+                <div key={idx} className="bg-[#2a2a2a] p-6 rounded-2xl border border-white/10 shadow-sm">
+                  <card.icon className="w-10 h-10 text-brand-green mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">{card.title}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">{card.line1}</p>
+                  <p className="text-gray-400 text-sm leading-relaxed mt-1">{card.line2}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 bg-gradient-to-r from-brand-brown/60 to-brand-red/50 border border-white/20 rounded-3xl p-5 md:p-6 shadow-xl text-white">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <span className="text-sm font-bold uppercase tracking-wider text-white/80">Why Now</span>
+                <div className="grid sm:grid-cols-3 gap-3 md:gap-4 w-full">
+                  <div className="px-4 py-3 bg-white/10 rounded-2xl border border-white/20 text-sm md:text-base font-semibold shadow-sm">POS + app go live Q1 — align CRM</div>
+                  <div className="px-4 py-3 bg-white/10 rounded-2xl border border-white/20 text-sm md:text-base font-semibold shadow-sm">Capture early IDs before spring promos</div>
+                  <div className="px-4 py-3 bg-white/10 rounded-2xl border border-white/20 text-sm md:text-base font-semibold shadow-sm">Delay = lost repeat visits</div>
+                </div>
+              </div>
             </div>
         </div>
       </Section>
@@ -1053,6 +1134,125 @@ export default function App() {
                 </div>
             </motion.div>
          </div>
+      </Section>
+
+      {/* Launch Plan Highlights - Slide 1 */}
+      <Section className="bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif">8-week Launch Plan</h2>
+            <p className="text-lg text-gray-600 mt-2">From awareness to repeat visits. Clear playbook. Clear ROI.</p>
+          </div>
+
+          {/* Hero timeline */}
+          <div className="relative mb-10">
+            <div className="hidden md:block absolute top-6 left-0 right-0 h-1 bg-brand-brown/20 rounded-full pointer-events-none"></div>
+            <div className="grid md:grid-cols-4 gap-6 relative">
+              {[
+                { phase: "Awareness", weeks: "W1–2", goal: "Introduce The Den", tactics: ["Teaser social/email", "Transit/print live", "In-store QR/signage"], kpi: "Impressions + QR scans", color: "from-brand-red/20 to-orange-400/15" },
+                { phase: "Enrollment", weeks: "W3–4", goal: "Drive signups", tactics: ["Bonus points offer", "Meta/Google push", "POS prompts"], kpi: "X signups/store/week", color: "from-orange-400/20 to-yellow-300/15" },
+                { phase: "Engagement", weeks: "W5–6", goal: "Build habit", tactics: ["2x Tuesdays", "Local Producer bonus", "MMS/social reminders"], kpi: "Repeat visits vs baseline", color: "from-brand-green/20 to-emerald-300/15" },
+                { phase: "Retention", weeks: "W7–8", goal: "Keep active", tactics: ["Win-back SMS/email", "Tier nudges", "Curated picks"], kpi: "Active members + basket", color: "from-blue-500/20 to-cyan-300/15" },
+              ].map((item, i) => (
+                <div key={i} className="relative">
+                  <div className="hidden md:block absolute -top-4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-brand-brown border-2 border-white shadow-md"></div>
+                  <div className={`rounded-2xl border border-brand-brown/15 p-7 shadow-md bg-gradient-to-br ${item.color}`}>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-bold uppercase tracking-wider text-brand-brown/80">{item.weeks}</span>
+                      <span className="text-lg font-bold text-brand-brown">{item.phase}</span>
+                    </div>
+                    <p className="text-xl md:text-2xl font-black text-brand-brown mb-4 leading-snug">{item.goal}</p>
+                    <ul className="text-lg md:text-xl text-gray-800 space-y-2 mb-4">
+                      {item.tactics.map((t, idx) => <li key={idx}>• {t}</li>)}
+                    </ul>
+                    <p className="text-lg md:text-xl font-bold text-brand-brown">KPI: {item.kpi}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Comms cards */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-brand-bgAlt rounded-3xl border border-gray-100 p-7 shadow-sm">
+              <h3 className="text-2xl font-bold text-brand-brown mb-3">Internal Comms</h3>
+              <ul className="space-y-2 text-base text-gray-700">
+                <li>• Week -2 toolkit + FAQ to store managers</li>
+                <li>• Daily POS accuracy checks at till</li>
+                <li>• Weekly KPI email to leadership</li>
+              </ul>
+            </div>
+            <div className="bg-brand-bgAlt rounded-3xl border border-gray-100 p-7 shadow-sm">
+              <h3 className="text-2xl font-bold text-brand-brown mb-3">External Cadence</h3>
+              <ul className="space-y-2 text-base text-gray-700">
+                <li>• Awareness: Teaser social/email, transit/print, in-store QR</li>
+                <li>• Enrollment: Bonus points, Meta/Google, POS prompts</li>
+                <li>• Engagement: 2x Tuesdays, Local Producer bonus, MMS/social</li>
+                <li>• Retention: Win-back SMS/email, tier nudges, curated picks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Launch Plan Highlights - Slide 2 */}
+      <Section className="bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-brown font-serif">Launch Investment & Success Targets</h2>
+            <p className="text-lg text-gray-600 mt-1">Budget framed for decision; targets set for Week 8.</p>
+          </div>
+
+          {/* Budget summary */}
+          <div className="bg-brand-bgAlt rounded-3xl border border-gray-100 p-8 shadow-lg mb-10">
+            <h3 className="text-2xl font-bold text-brand-brown mb-6">Budget Summary</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { label: "Moderate", total: "$34,000", lift: "1.64% lift to breakeven" },
+                { label: "Comprehensive", total: "$47,500", lift: "1.72% lift to breakeven" },
+              ].map((b, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-gray-200 p-7 shadow-lg flex flex-col gap-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-base font-bold uppercase tracking-wider text-gray-500">{b.label}</span>
+                    <span className="text-2xl font-black text-brand-brown">{b.total}</span>
+                  </div>
+                  <div className="h-4 w-full bg-gray-100 rounded-full overflow-hidden mb-3">
+                    <div className="h-full bg-gradient-to-r from-brand-brown to-brand-red" style={{ width: i === 0 ? '42%' : '60%' }}></div>
+                  </div>
+                  <p className="text-base text-gray-800 mb-1">{b.lift}</p>
+                  <div className="text-sm font-semibold uppercase tracking-wider text-gray-600 mb-2">Channel mix</div>
+                  <div className="grid grid-cols-2 gap-3 text-base text-gray-900">
+                    <span className="bg-brand-bgAlt px-4 py-3 rounded-xl border border-gray-200 text-center">Digital Paid</span>
+                    <span className="bg-brand-bgAlt px-4 py-3 rounded-xl border border-gray-200 text-center">Traditional</span>
+                    <span className="bg-brand-bgAlt px-4 py-3 rounded-xl border border-gray-200 text-center">In-Store</span>
+                    <span className="bg-brand-bgAlt px-4 py-3 rounded-xl border border-gray-200 text-center">Owned</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-gray-600 mt-4">Detailed channel costs remain in appendix.</p>
+          </div>
+
+          {/* Success targets */}
+          <div className="bg-brand-brown text-white rounded-3xl p-7 shadow-lg mb-8">
+            <h3 className="text-xl font-bold mb-3">Success Targets by Week 12</h3>
+            <div className="grid md:grid-cols-3 gap-3 text-base">
+              <div>• X signups/store/week (placeholder)</div>
+              <div>• +20% member repeat vs baseline</div>
+              <div>• Basket +Y% for members (placeholder)</div>
+              <div>• Member IDs at till ≥Z% (placeholder)</div>
+              <div>• POS accuracy ≥99.5%</div>
+              <div>• Repeat visits and QR scans trending up</div>
+            </div>
+          </div>
+
+          {/* Creative placeholders */}
+          <div className="flex flex-wrap gap-3 text-sm text-gray-500">
+            <div className="bg-brand-bgAlt border border-dashed border-gray-300 rounded-xl px-4 py-3">Teaser social tile</div>
+            <div className="bg-brand-bgAlt border border-dashed border-gray-300 rounded-xl px-4 py-3">In-store QR tent</div>
+            <div className="bg-brand-bgAlt border border-dashed border-gray-300 rounded-xl px-4 py-3">Contest promo tile</div>
+          </div>
+        </div>
       </Section>
 
       {/* 10. Timeline & Phase 2 */}
