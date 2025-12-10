@@ -330,7 +330,7 @@ export default function App() {
         
         <div className="mt-12 text-center">
             <p className="text-2xl font-bold text-brand-brown">
-                <span className="text-brand-red">20% increase</span> in customer lifetime value.
+                <span className="text-brand-red">20% increase</span> in Annual Customer Value.
             </p>
         </div>
       </Section>
@@ -995,11 +995,11 @@ export default function App() {
                             icon={PieChart} 
                             color="bg-brand-red" 
                         />
-                         <FinanceRow 
+                        <FinanceRow 
                             label="Marketing" 
                             type="Launch Only" 
                             items={["In-store Signage", "Digital Ads"]} 
-                            amount="$30,000"
+                            amount="$50,000"
                             icon={Smartphone} 
                             color="bg-orange-500" 
                         />
@@ -1036,11 +1036,11 @@ export default function App() {
                             icon={DollarSign} 
                             color="bg-blue-500" 
                         />
-                         <FinanceRow 
+                        <FinanceRow 
                             label="Reduction in Discount" 
                             type="Savings" 
                             items={["Reduced Mass Media", "Inventory Optimization"]} 
-                            amount="1.2%"
+                            amount="0.2%"
                             icon={BarChart3} 
                             color="bg-purple-500" 
                         />
@@ -1111,7 +1111,7 @@ export default function App() {
                 </div>
                 <div className="relative z-10 text-center md:text-right">
                     <div className="text-4xl md:text-5xl font-black text-brand-green mb-1">Year 1</div>
-                    <div className="text-sm font-bold uppercase tracking-widest text-white/50">Break Even Target: 1.2%</div>
+                    <div className="text-sm font-bold uppercase tracking-widest text-white/50">Break Even Target: 0.2%</div>
                 </div>
             </motion.div>
          </div>
