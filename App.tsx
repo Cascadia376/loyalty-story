@@ -322,7 +322,7 @@ export default function App() {
           <StatBox 
             value="+0.2"
             label="Additional Visits"
-            subtext="Moving from 2.3 to 2.5 visits per month represents a 10% increase in frequency."
+            subtext="Moving from 2.3 to 2.5 visits per month represents a 10% increase in frequency. Combined with a increase in basket size that gives us a 20% increase in Annual Customer Value."
             delay={0.1}
           />
           <RevenueChart />
