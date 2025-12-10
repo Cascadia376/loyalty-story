@@ -629,9 +629,9 @@ export default function App() {
 
         <div className="grid md:grid-cols-3 gap-6 mb-24">
             {[
-                { name: "Cub", pts: "10", sub: "Entry Level", range: "0–9,999 pts (annual reset)", spend: "Level up at ~$1,000 spend", color: "bg-gray-100", border: "border-gray-200", icon: "🐻" },
-                { name: "Brown Bear", pts: "12", sub: "Mid Tier", range: "10,000–29,999 pts (annual reset)", spend: "Earned at ~$1,000 spend", color: "bg-orange-50", border: "border-orange-200", icon: "🐻", highlight: true },
-                { name: "Grizzly", pts: "15", sub: "VIP Status", range: "30,000+ pts (annual reset)", spend: "Earned at ~$3,000 spend", color: "bg-brand-brown text-white", border: "border-brand-brown", icon: "👑" }
+                { name: "Cub", pts: "10", sub: "Entry Level", range: "0–9,999 pts (annual reset)", color: "bg-gray-100", border: "border-gray-200", icon: "🐻" },
+                { name: "Brown Bear", pts: "12", sub: "Mid Tier", range: "10,000–29,999 pts (annual reset)", spend: "Earned after ~$1,000 spend", color: "bg-orange-50", border: "border-orange-200", icon: "🐻", highlight: true },
+                { name: "Grizzly", pts: "15", sub: "VIP Status", range: "30,000+ pts (annual reset)", spend: "Earned after ~$3,000 spend", color: "bg-brand-brown text-white", border: "border-brand-brown", icon: "👑" }
             ].map((tier, idx) => (
                 <motion.div 
                     key={tier.name}
@@ -882,7 +882,7 @@ export default function App() {
                     <ul className="text-gray-200 text-base space-y-1 list-disc list-inside">
                       <li>One-stop shop across POS, app, email, SMS, and analytics.</li>
                       <li>Checks every box on our requirements list.</li>
-                      <li>We met with them in 2020 and chose them then as well.</li>
+                      <li>We met with them in 2023 and chose them then as well.</li>
                     </ul>
                 </div>
                 <div className="flex flex-wrap gap-3 md:gap-4">
