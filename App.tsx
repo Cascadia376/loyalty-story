@@ -630,7 +630,7 @@ export default function App() {
         <div className="grid md:grid-cols-3 gap-6 mb-24">
             {[
                 { name: "Cub", pts: "10", sub: "Entry Level", range: "0–9,999 pts (annual reset)", spend: "Level up at ~$1,000 spend", color: "bg-gray-100", border: "border-gray-200", icon: "🐻" },
-                { name: "Brown Bear", pts: "12.5", sub: "Mid Tier", range: "10,000–29,999 pts (annual reset)", spend: "Earned at ~$1,000 spend", color: "bg-orange-50", border: "border-orange-200", icon: "🐻", highlight: true },
+                { name: "Brown Bear", pts: "12", sub: "Mid Tier", range: "10,000–29,999 pts (annual reset)", spend: "Earned at ~$1,000 spend", color: "bg-orange-50", border: "border-orange-200", icon: "🐻", highlight: true },
                 { name: "Grizzly", pts: "15", sub: "VIP Status", range: "30,000+ pts (annual reset)", spend: "Earned at ~$3,000 spend", color: "bg-brand-brown text-white", border: "border-brand-brown", icon: "👑" }
             ].map((tier, idx) => (
                 <motion.div 
