@@ -1049,7 +1049,7 @@ export default function App() {
                 </div>
                 <div className="relative z-10 text-center md:text-right">
                     <div className="text-4xl md:text-5xl font-black text-brand-green mb-1">Year 1</div>
-                    <div className="text-sm font-bold uppercase tracking-widest text-white/50">Break Even Target: 0.2%</div>
+                    <div className="text-sm font-bold uppercase tracking-widest text-white/50">Break Even Target: 1.2%</div>
                 </div>
             </motion.div>
          </div>
