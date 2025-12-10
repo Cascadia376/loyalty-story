@@ -462,7 +462,7 @@ export default function App() {
               <p className="text-xl text-gray-500">Simple to understand. Rewarding to engage.</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
               {/* Earning Side */}
               <div className="space-y-8">
                   <h3 className="text-2xl font-bold text-brand-brown flex items-center gap-3">
@@ -506,33 +506,6 @@ export default function App() {
                       </motion.div>
                   </div>
 
-                  <div className="bg-brand-cream p-6 rounded-2xl border border-dashed border-brand-brown/20">
-                      <h4 className="font-bold text-brand-brown mb-4 flex items-center gap-2"><Zap size={18} className="text-orange-500"/> Bonus Multipliers</h4>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                          <div className="flex items-center gap-2 text-gray-600"><div className="w-1.5 h-1.5 rounded-full bg-brand-red"></div>Double Points Days</div>
-                          <div className="flex items-center gap-2 text-gray-600"><div className="w-1.5 h-1.5 rounded-full bg-brand-red"></div>3x on High Margin Products</div>
-                          <div className="flex items-center gap-2 text-gray-600"><div className="w-1.5 h-1.5 rounded-full bg-brand-red"></div>5x Birthday Bonus</div>
-                          <div className="flex items-center gap-2 text-gray-600"><div className="w-1.5 h-1.5 rounded-full bg-brand-red"></div>Challenges & Gamification (+500 pts)</div>
-                      </div>
-                  </div>
-
-                  <div className="mt-8 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                      <h4 className="text-xl font-bold text-brand-brown mb-3">Quick example</h4>
-                      <div className="space-y-2 text-gray-700">
-                          <p>If you spend $20:</p>
-                          <ul className="list-disc list-inside space-y-1">
-                              <li>Regular purchase: 20 × 10 = 200 points</li>
-                              <li>App purchase: 20 × 12 = 240 points</li>
-                              <li>Partner/exclusive: 20 × 15 = 300 points</li>
-                          </ul>
-                          <p className="mt-3">Since 1000 points = $1, then:</p>
-                          <ul className="list-disc list-inside space-y-1">
-                              <li>200 points ≈ $0.20 off</li>
-                              <li>240 points ≈ $0.24 off</li>
-                              <li>300 points ≈ $0.30 off</li>
-                          </ul>
-                      </div>
-                  </div>
               </div>
 
               {/* Redemption Side */}
@@ -542,7 +515,7 @@ export default function App() {
                       Redeeming
                   </h3>
 
-                  <div className="h-full bg-brand-brown rounded-3xl p-8 text-white flex flex-col justify-center items-center text-center relative overflow-hidden shadow-2xl min-h-[400px]">
+                  <div className="bg-brand-brown rounded-3xl p-6 md:p-8 text-white flex flex-col justify-center items-center text-center relative overflow-hidden shadow-2xl">
                       {/* Background Pattern */}
                       <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                           <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[radial-gradient(circle,white_1px,transparent_1px)] bg-[size:20px_20px]"></div>
@@ -551,7 +524,7 @@ export default function App() {
                       <div className="relative z-10">
                           <div className="text-lg text-white/60 font-medium mb-2 uppercase tracking-widest">Exchange Rate</div>
                           
-                          <div className="flex items-center justify-center gap-4 md:gap-8 my-8">
+                          <div className="flex items-center justify-center gap-4 md:gap-8 my-6">
                               <div>
                                   <span className="text-4xl md:text-5xl font-black block">1000</span>
                                   <span className="text-sm opacity-60 uppercase tracking-wider">Points</span>
@@ -563,7 +536,7 @@ export default function App() {
                               </div>
                           </div>
 
-                          <p className="max-w-xs mx-auto text-white/80 leading-relaxed mb-8">
+                          <p className="max-w-xs mx-auto text-white/80 leading-relaxed mb-6">
                               Redeem instantly at checkout for any dollar amount. No complex tiers, no blackout dates.
                           </p>
 
@@ -578,25 +551,66 @@ export default function App() {
           </div>
         </div>
 
-        {/* Multipliers Section */}
-        <div className="mt-24">
-            <h3 className="text-2xl font-bold text-brand-brown mb-8 text-left">Smart Multipliers</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-                {[
-                    { title: "App Usage", val: "12 pts/$1", desc: "Drives digital adoption & data capture." },
-                    { title: "Private Label", val: "15 pts/$1", desc: "Higher margins, supports local." },
-                    { title: "High Margin Products", val: "3x Points", desc: "Focus boosts profitability while moving featured items." }
-                ].map((item, i) => (
-                    <motion.div 
-                        key={i}
-                        whileHover={{ y: -5 }}
-                        className="bg-brand-bgAlt p-6 rounded-lg overflow-hidden border border-brand-brown/10 shadow-sm text-center"
-                    >
-                        <h4 className="text-gray-500 font-bold uppercase text-xs tracking-wider mb-2">{item.title}</h4>
-                        <div className="text-3xl font-black text-brand-red mb-2">{item.val}</div>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
-                    </motion.div>
-                ))}
+        {/* Bottom grid: Smart Multipliers, Quick Example, Bonus Multipliers */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-brand-bgAlt p-6 rounded-2xl border border-brand-brown/10 shadow-sm h-full">
+                <h4 className="text-xl font-bold text-brand-brown mb-4">Smart Multipliers</h4>
+                <div className="space-y-3 text-sm text-gray-800">
+                    {[
+                        { title: "App Usage", val: "12 pts/$1", desc: "Drives digital adoption & data capture." },
+                        { title: "Private Label", val: "15 pts/$1", desc: "Higher margins, supports local." },
+                        { title: "High Margin Products", val: "3x Points", desc: "Focus boosts profitability while moving featured items." }
+                    ].map((item) => (
+                        <div key={item.title} className="bg-white/60 rounded-xl border border-brand-brown/10 px-4 py-3">
+                            <div className="flex items-center justify-between">
+                                <span className="font-semibold text-brand-brown">{item.title}</span>
+                                <span className="font-black text-brand-red">{item.val}</span>
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">{item.desc}</p>
+                        </div>
+                    ))}
+                </div>
+                <div className="mt-6 bg-brand-cream p-5 rounded-2xl border border-dashed border-brand-brown/20">
+                    <h5 className="font-bold text-brand-brown mb-3 flex items-center gap-2"><Zap size={16} className="text-orange-500"/> Bonus Multipliers</h5>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                        <div className="flex items-center gap-2 text-gray-600"><div className="w-1.5 h-1.5 rounded-full bg-brand-red"></div>Double Points Days</div>
+                        <div className="flex items-center gap-2 text-gray-600"><div className="w-1.5 h-1.5 rounded-full bg-brand-red"></div>3x on High Margin Products</div>
+                        <div className="flex items-center gap-2 text-gray-600"><div className="w-1.5 h-1.5 rounded-full bg-brand-red"></div>5x Birthday Bonus</div>
+                        <div className="flex items-center gap-2 text-gray-600"><div className="w-1.5 h-1.5 rounded-full bg-brand-red"></div>Challenges & Gamification (+500 pts)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm h-full">
+                <h4 className="text-xl font-bold text-brand-brown mb-4">Quick example</h4>
+                <p className="text-gray-600 text-sm mb-4">How a $20 purchase earns points and what they are worth.</p>
+                <div className="space-y-3 text-sm text-gray-800">
+                    <div className="flex items-center justify-between bg-brand-bgAlt rounded-xl px-4 py-3">
+                        <span className="font-semibold text-brand-brown/80">Regular purchase</span>
+                        <span className="font-bold text-brand-brown">20 x 10 = 200 pts</span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-xl px-4 py-3 border border-brand-red/20 bg-brand-red/5">
+                        <span className="font-semibold text-brand-brown/80">App purchase</span>
+                        <span className="font-bold text-brand-red">20 x 12 = 240 pts</span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-xl px-4 py-3 border border-brand-brown/20">
+                        <span className="font-semibold text-brand-brown/80">Partner / exclusive</span>
+                        <span className="font-bold text-brand-brown">20 x 15 = 300 pts</span>
+                    </div>
+                    <div className="pt-2 text-xs font-bold uppercase tracking-wider text-gray-500">Value (1000 pts = $1)</div>
+                    <div className="flex items-center justify-between rounded-xl px-4 py-3 bg-gray-50 border border-gray-100">
+                        <span>200 pts</span>
+                        <span className="font-bold text-brand-brown">$0.20 off</span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-xl px-4 py-3 bg-gray-50 border border-gray-100">
+                        <span>240 pts</span>
+                        <span className="font-bold text-brand-brown">$0.24 off</span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-xl px-4 py-3 bg-gray-50 border border-gray-100">
+                        <span>300 pts</span>
+                        <span className="font-bold text-brand-brown">$0.30 off</span>
+                    </div>
+                </div>
             </div>
         </div>
       </Section>
@@ -760,6 +774,101 @@ export default function App() {
               </p>
             </div>
           </div>
+        </div>
+      </Section>
+
+      {/* NEW SECTION: CRM Overview */}
+      <Section className="bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+             
+             {/* Left: Strategy */}
+             <div>
+            <div className="inline-flex items-center gap-2 bg-brand-brown/5 text-brand-brown px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+                 <Rocket size={16} /> Phase 1: Launch
+               </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-6">The Engagement Engine</h2>
+                <p className="text-xl text-gray-500 mb-12">
+                   How we nudge Sarah from passive collection to active engagement using <span className="text-brand-red font-bold">lifecycle marketing</span>.
+                </p>
+
+                <div className="space-y-10">
+                    <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
+                            <Calendar className="text-brand-brown" />
+                        </div>
+                        <div>
+                            <h4 className="text-xl font-bold text-brand-brown mb-2">Frequency Drivers</h4>
+                            <p className="text-gray-500 leading-relaxed">
+                                Automated "Win-back" campaigns trigger if Sarah hasn't visited in 21 days.
+                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Incremental Visits</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
+                            <TrendingUp className="text-brand-brown" />
+                        </div>
+                        <div>
+                            <h4 className="text-xl font-bold text-brand-brown mb-2">Basket Builders</h4>
+                            <p className="text-gray-500 leading-relaxed">
+                                "You're 200 pts away from the next tier." Targeted offers to increase cart size.
+                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Higher Spend</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
+                            <Wine className="text-brand-brown" />
+                        </div>
+                        <div>
+                            <h4 className="text-xl font-bold text-brand-brown mb-2">Smart Affinity</h4>
+                            <p className="text-gray-500 leading-relaxed">
+                                Sarah buys Pinot Noir. We notify her when the new vintage drops.
+                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Emotional Connection</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+             {/* Right: Visual Mockups */}
+             <div className="relative">
+                 {/* Decorative Circle */}
+                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-bgAlt rounded-full -z-10 blur-3xl opacity-50"></div>
+                 
+                 <div className="flex flex-col gap-6">
+                     <NotificationCard 
+                        icon={Bell}
+                        title="We Miss You, Sarah!"
+                        message="It's been a while. Come in this week for 2x points on all Rosé wines. 🍷"
+                        time="Just now"
+                        delay={0.2}
+                     />
+                     <NotificationCard 
+                        icon={TrendingUp}
+                        title="Almost There..."
+                        message="You are only $12 away from unlocking a $10 reward voucher!"
+                        time="2h ago"
+                        delay={0.4}
+                     />
+                     <NotificationCard 
+                        icon={Mail}
+                        title="Exclusive Access"
+                        message="The 2024 Joie Farm Pinot is here. As a Brown Bear member, you get first dibs."
+                        time="Yesterday"
+                        delay={0.6}
+                     />
+                 </div>
+                 
+                 <div className="mt-8 text-center">
+                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Real-time Push & SMS</p>
+                 </div>
+            </div>
+
+         </div>
         </div>
       </Section>
 
@@ -1040,101 +1149,6 @@ export default function App() {
          </div>
       </Section>
 
-      {/* NEW SECTION: CRM Overview */}
-      <Section className="bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-             
-             {/* Left: Strategy */}
-             <div>
-            <div className="inline-flex items-center gap-2 bg-brand-brown/5 text-brand-brown px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
-                 <Rocket size={16} /> Phase 1: Launch
-               </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-6">The Engagement Engine</h2>
-                <p className="text-xl text-gray-500 mb-12">
-                   How we nudge Sarah from passive collection to active engagement using <span className="text-brand-red font-bold">lifecycle marketing</span>.
-                </p>
-
-                <div className="space-y-10">
-                    <div className="flex gap-4">
-                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
-                            <Calendar className="text-brand-brown" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-bold text-brand-brown mb-2">Frequency Drivers</h4>
-                            <p className="text-gray-500 leading-relaxed">
-                                Automated "Win-back" campaigns trigger if Sarah hasn't visited in 21 days.
-                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Incremental Visits</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
-                            <TrendingUp className="text-brand-brown" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-bold text-brand-brown mb-2">Basket Builders</h4>
-                            <p className="text-gray-500 leading-relaxed">
-                                "You're 200 pts away from the next tier." Targeted offers to increase cart size.
-                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Higher Spend</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
-                            <Wine className="text-brand-brown" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-bold text-brand-brown mb-2">Smart Affinity</h4>
-                            <p className="text-gray-500 leading-relaxed">
-                                Sarah buys Pinot Noir. We notify her when the new vintage drops.
-                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Emotional Connection</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-             </div>
-
-             {/* Right: Visual Mockups */}
-             <div className="relative">
-                 {/* Decorative Circle */}
-                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-bgAlt rounded-full -z-10 blur-3xl opacity-50"></div>
-                 
-                 <div className="flex flex-col gap-6">
-                     <NotificationCard 
-                        icon={Bell}
-                        title="We Miss You, Sarah!"
-                        message="It's been a while. Come in this week for 2x points on all RosAc wines. dY?ú"
-                        time="Just now"
-                        delay={0.2}
-                     />
-                     <NotificationCard 
-                        icon={TrendingUp}
-                        title="Almost There..."
-                        message="You are only $12 away from unlocking a $10 reward voucher!"
-                        time="2h ago"
-                        delay={0.4}
-                     />
-                     <NotificationCard 
-                        icon={Mail}
-                        title="Exclusive Access"
-                        message="The 2024 Joie Farm Pinot is here. As a Brown Bear member, you get first dibs."
-                        time="Yesterday"
-                        delay={0.6}
-                     />
-                 </div>
-                 
-                 <div className="mt-8 text-center">
-                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Real-time Push & SMS</p>
-                 </div>
-            </div>
-
-         </div>
-        </div>
-      </Section>
-
       {/* Launch Plan Highlights - Slide 1 */}
       <Section className="bg-brand-bgAlt">
         <div className="max-w-6xl mx-auto">
@@ -1207,8 +1221,8 @@ export default function App() {
             <h3 className="text-2xl font-bold text-brand-brown mb-6">Budget Summary</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                { label: "Moderate", total: "$43,000", lift: "Uplift % to breakeven: TBD" },
-                { label: "Comprehensive", total: "$56,500", lift: "Uplift % to breakeven: TBD" },
+                { label: "Moderate", total: "$43,000", lift: "Uplift % to breakeven: 1.23%" },
+                { label: "Comprehensive", total: "$56,500", lift: "Uplift % to breakeven: 1.30%" },
               ].map((b, i) => (
                 <div key={i} className="bg-white rounded-3xl border border-gray-200 p-7 shadow-lg flex flex-col gap-4">
                   <div className="flex items-center justify-between mb-4">
