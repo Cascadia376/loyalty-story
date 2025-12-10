@@ -777,101 +777,7 @@ export default function App() {
         </div>
       </Section>
 
-      {/* NEW SECTION: CRM Overview */}
-      <Section className="bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-             
-             {/* Left: Strategy */}
-             <div>
-            <div className="inline-flex items-center gap-2 bg-brand-brown/5 text-brand-brown px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
-                 <Rocket size={16} /> Phase 1: Launch
-               </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-6">The Engagement Engine</h2>
-                <p className="text-xl text-gray-500 mb-12">
-                   How we nudge Sarah from passive collection to active engagement using <span className="text-brand-red font-bold">lifecycle marketing</span>.
-                </p>
-
-                <div className="space-y-10">
-                    <div className="flex gap-4">
-                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
-                            <Calendar className="text-brand-brown" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-bold text-brand-brown mb-2">Frequency Drivers</h4>
-                            <p className="text-gray-500 leading-relaxed">
-                                Automated "Win-back" campaigns trigger if Sarah hasn't visited in 21 days.
-                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Incremental Visits</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
-                            <TrendingUp className="text-brand-brown" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-bold text-brand-brown mb-2">Basket Builders</h4>
-                            <p className="text-gray-500 leading-relaxed">
-                                "You're 200 pts away from the next tier." Targeted offers to increase cart size.
-                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Higher Spend</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
-                            <Wine className="text-brand-brown" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-bold text-brand-brown mb-2">Smart Affinity</h4>
-                            <p className="text-gray-500 leading-relaxed">
-                                Sarah buys Pinot Noir. We notify her when the new vintage drops.
-                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Emotional Connection</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-             </div>
-
-             {/* Right: Visual Mockups */}
-             <div className="relative">
-                 {/* Decorative Circle */}
-                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-bgAlt rounded-full -z-10 blur-3xl opacity-50"></div>
-                 
-                 <div className="flex flex-col gap-6">
-                     <NotificationCard 
-                        icon={Bell}
-                        title="We Miss You, Sarah!"
-                        message="It's been a while. Come in this week for 2x points on all Rosé wines. 🍷"
-                        time="Just now"
-                        delay={0.2}
-                     />
-                     <NotificationCard 
-                        icon={TrendingUp}
-                        title="Almost There..."
-                        message="You are only $12 away from unlocking a $10 reward voucher!"
-                        time="2h ago"
-                        delay={0.4}
-                     />
-                     <NotificationCard 
-                        icon={Mail}
-                        title="Exclusive Access"
-                        message="The 2024 Joie Farm Pinot is here. As a Brown Bear member, you get first dibs."
-                        time="Yesterday"
-                        delay={0.6}
-                     />
-                 </div>
-                 
-                 <div className="mt-8 text-center">
-                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Real-time Push & SMS</p>
-                 </div>
-            </div>
-
-         </div>
-        </div>
-      </Section>
-
+      
       {/* 8. The Platform (Alpine IQ) */}
       <Section dark className="bg-brand-dark">
         <div className="max-w-6xl mx-auto">
@@ -1149,7 +1055,101 @@ export default function App() {
          </div>
       </Section>
 
-      {/* Launch Plan Highlights - Slide 1 */}
+      {/* NEW SECTION: CRM Overview */}
+      <Section className="bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+             
+             {/* Left: Strategy */}
+             <div>
+            <div className="inline-flex items-center gap-2 bg-brand-brown/5 text-brand-brown px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+                 <Rocket size={16} /> Phase 1: Launch
+               </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-brand-brown font-serif mb-6">The Engagement Engine</h2>
+                <p className="text-xl text-gray-500 mb-12">
+                   How we nudge Sarah from passive collection to active engagement using <span className="text-brand-red font-bold">lifecycle marketing</span>.
+                </p>
+
+                <div className="space-y-10">
+                    <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
+                            <Calendar className="text-brand-brown" />
+                        </div>
+                        <div>
+                            <h4 className="text-xl font-bold text-brand-brown mb-2">Frequency Drivers</h4>
+                            <p className="text-gray-500 leading-relaxed">
+                                Automated "Win-back" campaigns trigger if Sarah hasn't visited in 21 days.
+                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Incremental Visits</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
+                            <TrendingUp className="text-brand-brown" />
+                        </div>
+                        <div>
+                            <h4 className="text-xl font-bold text-brand-brown mb-2">Basket Builders</h4>
+                            <p className="text-gray-500 leading-relaxed">
+                                "You're 200 pts away from the next tier." Targeted offers to increase cart size.
+                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Higher Spend</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-brand-brown/5 flex items-center justify-center shrink-0">
+                            <Wine className="text-brand-brown" />
+                        </div>
+                        <div>
+                            <h4 className="text-xl font-bold text-brand-brown mb-2">Smart Affinity</h4>
+                            <p className="text-gray-500 leading-relaxed">
+                                Sarah buys Pinot Noir. We notify her when the new vintage drops.
+                                <br/><span className="text-sm font-bold text-brand-red mt-1 block">Goal: Emotional Connection</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+             {/* Right: Visual Mockups */}
+             <div className="relative">
+                 {/* Decorative Circle */}
+                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-bgAlt rounded-full -z-10 blur-3xl opacity-50"></div>
+                 
+                 <div className="flex flex-col gap-6">
+                     <NotificationCard 
+                        icon={Bell}
+                        title="We Miss You, Sarah!"
+                        message="It's been a while. Come in this week for 2x points on all Rosé wines. 🍷"
+                        time="Just now"
+                        delay={0.2}
+                     />
+                     <NotificationCard 
+                        icon={TrendingUp}
+                        title="Almost There..."
+                        message="You are only $12 away from unlocking a $10 reward voucher!"
+                        time="2h ago"
+                        delay={0.4}
+                     />
+                     <NotificationCard 
+                        icon={Mail}
+                        title="Exclusive Access"
+                        message="The 2024 Joie Farm Pinot is here. As a Brown Bear member, you get first dibs."
+                        time="Yesterday"
+                        delay={0.6}
+                     />
+                 </div>
+                 
+                 <div className="mt-8 text-center">
+                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Real-time Push & SMS</p>
+                 </div>
+            </div>
+
+         </div>
+        </div>
+      </Section>
+{/* Launch Plan Highlights - Slide 1 */}
       <Section className="bg-brand-bgAlt">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
