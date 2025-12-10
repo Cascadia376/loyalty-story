@@ -10,15 +10,15 @@ const data = [
   },
   {
     name: 'With Loyalty',
-    amount: 1359,
+    amount: 1250,
     fill: '#5C3A2A', // Lighter Brown
-    label: '$1,359'
+    label: '$1,250'
   },
   {
     name: 'New Revenue',
-    amount: 317,
+    amount: 208,
     fill: '#D72323', // Brand Red
-    label: '+$317'
+    label: '+$208'
   },
 ];
 

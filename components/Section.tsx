@@ -44,7 +44,7 @@ export const Section: React.FC<SectionProps> = ({
         <img
           src={watermarkSrc}
           alt="Cascadia logo"
-          className="pointer-events-none select-none absolute bottom-6 right-6 w-24 md:w-32"
+          className="pointer-events-none select-none absolute bottom-6 right-6 w-[60px] md:w-[60px]"
         />
       )}
     </section>
