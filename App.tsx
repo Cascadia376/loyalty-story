@@ -285,7 +285,7 @@ export default function App() {
                         <div className="text-xs text-gray-500 uppercase tracking-wide">Visits/Mo</div>
                     </div>
                   <div className="bg-gray-50 p-3 rounded-xl">
-                      <div className="text-2xl font-bold text-brand-brown">$37</div>
+                      <div className="text-2xl font-bold text-brand-brown">$35</div>
                       <div className="text-xs text-gray-500 uppercase tracking-wide">Basket Size</div>
                   </div>
                </div>
