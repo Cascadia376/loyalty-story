@@ -240,7 +240,7 @@ export default function App() {
               How a smart rewards program transforms Cascadia's business from transactional to relational.
             </p>
             <div className="mt-52">
-              <img src="/logo-hero.png" alt="Cascadia logo" className="h-[125px] w-auto drop-shadow pointer-events-none" />
+              <img src="/logo-hero.png" alt="Cascadia logo" className="h-[50px] w-auto drop-shadow pointer-events-none" />
             </div>
           </motion.div>
         </div>
