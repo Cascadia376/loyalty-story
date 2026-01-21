@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -205,6 +205,27 @@ const ExperienceCard = ({ title, subtitle, icon: Icon, type, image }: any) => (
     </motion.div>
 );
 
+const ViewToggle = ({ isManager, managerHref, storyHref }: { isManager: boolean, managerHref: string, storyHref: string }) => (
+  <div className="inline-flex items-center gap-2 bg-white/80 border border-brand-brown/10 rounded-full p-1 shadow-sm">
+    <a
+      href={storyHref}
+      className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors ${
+        isManager ? 'text-brand-brown/60 hover:text-brand-brown' : 'bg-brand-brown text-white'
+      }`}
+    >
+      Story
+    </a>
+    <a
+      href={managerHref}
+      className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors ${
+        isManager ? 'bg-brand-brown text-white' : 'text-brand-brown/60 hover:text-brand-brown'
+      }`}
+    >
+      Manager Brief
+    </a>
+  </div>
+);
+
 export default function App() {
   const [showLoyalSlide, setShowLoyalSlide] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -213,38 +234,54 @@ export default function App() {
     damping: 30,
     restDelta: 0.001
   });
+  const baseUrl = typeof window !== 'undefined' ? (import.meta.env.BASE_URL || '/') : '/';
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  const managerPath = `${normalizedBase}/manager`;
+  const storyPath = normalizedBase || '/';
+  const isManagerView =
+    typeof window !== 'undefined' &&
+    window.location.pathname.replace(/\/+$/, '') === managerPath.replace(/\/+$/, '');
 
   return (
     <div className="font-sans text-gray-900 bg-brand-cream selection:bg-brand-red selection:text-white">
+      {isManagerView && (
+        <div className="sticky top-0 z-50 bg-brand-brown text-white text-xs md:text-sm font-bold uppercase tracking-[0.2em] py-2 text-center">
+          Manager View - condensed sections
+        </div>
+      )}
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1.5 bg-brand-red origin-left z-50"
         style={{ scaleX }}
       />
 
-      {/* 1. Intro Section */}
-      <Section className="bg-brand-bgAlt" showWatermark={false}>
-        <div className="max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-6xl md:text-8xl font-black text-brand-brown mb-6 tracking-tight leading-[0.9]">
-              The Den:<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-orange-600">
-                A Loyalty Story
-              </span>
-            </h1>
-            <p className="text-2xl md:text-3xl text-gray-500 font-serif italic max-w-2xl">
-              How a smart rewards program transforms Cascadia's business from transactional to relational.
-            </p>
-            <div className="mt-52">
-              <img src="/logo-hero.png" alt="Cascadia logo" className="h-[50px] w-auto drop-shadow pointer-events-none" />
+      <>
+        {/* 1. Intro Section */}
+          <Section className="bg-brand-bgAlt" showWatermark={false}>
+            <div className="max-w-4xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="mb-8">
+                  <ViewToggle isManager={isManagerView} managerHref={managerPath} storyHref={storyPath} />
+                </div>
+                <h1 className="text-6xl md:text-8xl font-black text-brand-brown mb-6 tracking-tight leading-[0.9]">
+                  The Den:<br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-orange-600">
+                    A Loyalty Story
+                  </span>
+                </h1>
+                <p className="text-2xl md:text-3xl text-gray-500 font-serif italic max-w-2xl">
+                  How a smart rewards program transforms Cascadia's business from transactional to relational.
+                </p>
+                <div className="mt-52">
+                  <img src="/logo-hero.png" alt="Cascadia logo" className="h-[50px] w-auto drop-shadow pointer-events-none" />
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-        </div>
-      </Section>
+          </Section>
 
       {/* 2. The Persona (Sarah) */}
       <Section className="bg-brand-bgAlt">
@@ -718,6 +755,8 @@ export default function App() {
       {/* Competitor Comparison */}
 
 
+      {!isManagerView && (
+        <>
       {/* 7. NEW CRM Section */}
       <Section className="bg-brand-cream">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
@@ -776,8 +815,12 @@ export default function App() {
           </div>
         </div>
       </Section>
+        </>
+      )}
 
       
+      {!isManagerView && (
+        <>
       {/* 8. The Platform (Alpine IQ) */}
       <Section dark className="bg-brand-dark">
         <div className="max-w-6xl mx-auto">
@@ -893,7 +936,11 @@ export default function App() {
             </div>
         </div>
       </Section>
+        </>
+      )}
 
+      {!isManagerView && (
+        <>
       {/* 9. NEW Financial Model Section */}
       <Section className="bg-brand-bgAlt">
          <div className="max-w-6xl mx-auto">
@@ -1054,6 +1101,8 @@ export default function App() {
             </motion.div>
          </div>
       </Section>
+        </>
+      )}
 
       {/* NEW SECTION: CRM Overview */}
       <Section className="bg-white">
@@ -1209,6 +1258,8 @@ export default function App() {
         </div>
       </Section>
 
+      {!isManagerView && (
+        <>
       {/* Launch Plan Highlights - Slide 2 */}
       <Section className="bg-white">
         <div className="max-w-6xl mx-auto">
@@ -1277,6 +1328,8 @@ export default function App() {
 
         </div>
       </Section>
+        </>
+      )}
 
       {/* Success Targets */}
       <Section className="bg-white">
@@ -1400,6 +1453,7 @@ export default function App() {
           <img src="/logo-footer.png" alt="Cascadia footer logo" className="w-48 md:w-64 drop-shadow-lg" />
         </div>
       </footer>
+      </>
     </div>
   );
 }
